@@ -23,6 +23,12 @@ namespace Reolmarkedet.Controller
             booking.endDate = endDate;
             booking.TenantId = tenantId;
             booking.BoothId = boothId;
+
+            var id = _dbContext.BookingDb.AddItem(booking);
+
+            _dbContext.BookingDb.Items.FirstOrDefault(x => x.Id == id).BookingNo = id + 10000000;
+
+            _dbContext.BookingDb.UpdateDatabase();
         }
 
         public List<Booth> GetAvailableBooths(DateTime startDate, DateTime endDate)

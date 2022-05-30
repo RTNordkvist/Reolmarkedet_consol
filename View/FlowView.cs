@@ -37,15 +37,10 @@ namespace Reolmarkedet.View
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("Velkommen til Reolmarkedet");
-                Console.WriteLine();
-                Console.WriteLine("1. Opret ny bruger");
-                Console.WriteLine("2. Tilgå systemet som admin");
-                Console.WriteLine("3. Afslut program");
-
                 while (_currentTenant == null)
                 {
+                    PrintMenu();
+
                     _userinput = Console.ReadLine();
 
                     switch (_userinput)
@@ -55,9 +50,28 @@ namespace Reolmarkedet.View
                             break;
 
                         case "2":
+                            Console.WriteLine("Indtast password");
+
                             if (Console.ReadLine() == "admin123")
                             {
+                                PrintAdmin();
 
+                                _userinput = Console.ReadLine();
+
+                                switch (_userinput)
+                                {
+                                    case "1":
+                                        _boothView.CreateBoothView();
+                                        break;
+
+                                    case "2":
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Vælg et menupunkt");
+                                        break;
+                                }
+                                _userinput = null;
                             }
                             else
                             {
@@ -74,17 +88,12 @@ namespace Reolmarkedet.View
                             Console.WriteLine("Vælg et menupunkt");
                             break;
                     }
+                    _userinput = null;
                 }
 
-                Console.Clear();
-                Console.WriteLine($"Velkommen {_currentTenant.Name}");
-                Console.WriteLine();
-                Console.WriteLine($"Saldo: {_currentTenant.Balance} kr");
-                Console.WriteLine();
-                Console.WriteLine($"1. Opret ny booking");
-                Console.WriteLine($"2. Log ud");
                 while (_currentTenant != null)
                 {
+                    PrintUserMenu();
                     _userinput = Console.ReadLine();
 
                     switch (_userinput)
@@ -102,6 +111,37 @@ namespace Reolmarkedet.View
                             break;
                     }
                 }
+            }
+
+            void PrintMenu()
+            {
+                Console.Clear();
+                Console.WriteLine("Velkommen til Reolmarkedet");
+                Console.WriteLine();
+                Console.WriteLine("1. Opret ny bruger");
+                Console.WriteLine("2. Tilgå systemet som admin");
+                Console.WriteLine("3. Afslut program");
+            }
+
+            void PrintUserMenu()
+            {
+                Console.Clear();
+                Console.WriteLine($"Velkommen {_currentTenant.Name}");
+                Console.WriteLine($"Kundenummer: {_currentTenant.CustomerNo}");
+                Console.WriteLine();
+                Console.WriteLine($"Saldo: {_currentTenant.Balance} kr");
+                Console.WriteLine();
+                Console.WriteLine($"1. Opret ny booking");
+                Console.WriteLine($"2. Log ud");
+            }
+
+            void PrintAdmin()
+            {
+                Console.Clear();
+                Console.WriteLine("ADMIN");
+                Console.WriteLine();
+                Console.WriteLine("1. Opret ny reol");
+                Console.WriteLine("2. Tilbage");
             }
         }
     }

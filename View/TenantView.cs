@@ -48,6 +48,9 @@ namespace Reolmarkedet.View
                     Console.WriteLine();
                 }
             }
+
+            Console.WriteLine("Bruger oprettet!");
+
             return tenant;
         }
     }

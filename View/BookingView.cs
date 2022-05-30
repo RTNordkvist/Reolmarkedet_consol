@@ -21,7 +21,7 @@ namespace Reolmarkedet.View
         {
             Console.WriteLine("Opret ny booking");
             Console.WriteLine();
-            Console.WriteLine("Indtast startdato for ønsket periode (DDMMYYYY)"); //TODO Ændr formatet
+            Console.WriteLine("Indtast startdato for ønsket periode (DD-MM-YYYY)");
 
             DateTime startDate;
             while (DateTime.TryParse(Console.ReadLine(), out startDate))
@@ -36,14 +36,18 @@ namespace Reolmarkedet.View
 
             if (availableBooths != null)
             {
+                Console.WriteLine();
+                Console.WriteLine("Ledige reoler i den valgte periode:");
+
                 foreach (var booth in availableBooths)
                 {
                     Console.WriteLine($"{booth.Name} ({booth.Type}): {booth.Price} kr.");
                 }
+                Console.WriteLine();
                 Console.WriteLine("Angiv nummeret på den ønskede reol");
 
                 bool isBoothValid = false;
-                while (isBoothValid)
+                while (!isBoothValid)
                 {
                     var userInput = Console.ReadLine();
                     var chosenBooth = availableBooths.FirstOrDefault(x => x.Name == userInput);
@@ -52,6 +56,9 @@ namespace Reolmarkedet.View
                     {
                         isBoothValid = true;
                         _bookingController.CreateBooking(startDate, endDate, tenantId, chosenBooth.Id);
+                        Console.WriteLine("Booking oprettet!");
+                        Console.WriteLine($"{startDate.ToString("dd-MM-yyyy")}-{endDate.ToString("dd-MM-yyyy")}: {chosenBooth.Price}");
+                        Console.ReadKey();
                     }
                     else
                     {
