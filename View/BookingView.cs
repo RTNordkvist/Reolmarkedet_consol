@@ -12,9 +12,9 @@ namespace Reolmarkedet.View
     {
         private BookingController _bookingController;
 
-        public BookingView(BookingController bookingController)
+        public BookingView()
         {
-            _bookingController = bookingController;
+            _bookingController = new BookingController();
         }
 
         public void CreateBookingView(int tenantId)

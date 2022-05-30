@@ -12,9 +12,9 @@ namespace Reolmarkedet.View
     {
         private BoothController _boothController;
 
-        public BoothView(BoothController boothController)
+        public BoothView()
         {
-            _boothController = boothController;
+            _boothController = new BoothController();
         }
 
         public Booth CreateBoothView()

@@ -11,9 +11,9 @@ namespace Reolmarkedet.Controller
     {
         private DbContext _dbContext;
 
-        public TenantController(DbContext dbContext)
+        public TenantController()
         {
-            _dbContext = dbContext;
+            _dbContext = DbContext.Instance;
         }
 
         public Tenant CreateTenant(string name, string telephoneNo, string mail)

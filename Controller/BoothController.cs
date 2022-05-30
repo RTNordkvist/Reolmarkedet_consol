@@ -20,9 +20,9 @@ namespace Reolmarkedet.Controller
             "Gulvplads"
         };
 
-        public BoothController(DbContext dbContext)
+        public BoothController()
         {
-            _dbContext = dbContext;
+            _dbContext = DbContext.Instance;
         }
 
         public Booth CreateBooth(string name, string type, decimal price)

@@ -10,10 +10,6 @@ namespace Reolmarkedet.View
 {
     public class FlowView
     {
-        private DbContext _dbContext;
-        private TenantController _tenantController;
-        private BookingController _bookingController;
-        private BoothController _boothController;
         private string _userinput;
         private Tenant _currentTenant;
         private TenantView _tenantView;
@@ -22,15 +18,9 @@ namespace Reolmarkedet.View
 
         public FlowView()
         {
-            _dbContext = new DbContext();
-
-            _tenantController = new TenantController(_dbContext);
-            _bookingController = new BookingController(_dbContext);
-            _boothController = new BoothController(_dbContext);
-
-            _tenantView = new TenantView(_tenantController);
-            _bookingView = new BookingView(_bookingController);
-            _boothView = new BoothView(_boothController);
+            _tenantView = new TenantView();
+            _bookingView = new BookingView();
+            _boothView = new BoothView();
         }
 
         public void RunProgram()
@@ -50,7 +40,7 @@ namespace Reolmarkedet.View
                             break;
 
                         case "2":
-                            Console.WriteLine("Indtast password");
+                            Console.WriteLine("Indtast password (tast admin123)");
 
                             if (Console.ReadLine() == "admin123")
                             {

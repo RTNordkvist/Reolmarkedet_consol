@@ -12,9 +12,9 @@ namespace Reolmarkedet.View
     {
         private TenantController _tenantController;
 
-        public TenantView(TenantController tenantController)
+        public TenantView()
         {
-            _tenantController = tenantController;
+            _tenantController = new TenantController();
         }
 
         public Tenant CreateTenantView()

@@ -11,9 +11,9 @@ namespace Reolmarkedet.Controller
     {
         private DbContext _dbContext;
 
-        public BookingController(DbContext dbContext)
+        public BookingController()
         {
-            _dbContext = dbContext;
+            _dbContext = DbContext.Instance;
         }
 
         public void CreateBooking(DateTime startDate, DateTime endDate, int tenantId, int boothId)
